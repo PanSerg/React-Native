@@ -113,7 +113,7 @@ export default function Login({ navigation }) {
                     onPress={() => navigation.navigate("Registration")}
                   >
                     Не зарегистрирован?
-                    <Text style={styles.link}> Зарегистрируйтесь</Text>
+                    <Text style={styles.link}> Зарегистрироваться</Text>
                   </Text>
                 )}
               </View>

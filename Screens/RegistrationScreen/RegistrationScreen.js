@@ -7,7 +7,6 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
   KeyboardAvoidingView,
-  Platform,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
@@ -19,23 +18,22 @@ const initialState = {
 
 export default function Registration({navigation}) {
     const [dimensions, setDimensions] = useState(
-      dimensions.get("window").width
-    );
+      Dimensions.get("window").width);
     const [isOnFocus, setIsOnFocus] = useState(false);
     const [isHidePasw, setIsHidePasw] = useState(true);
     const [nameUser, setNameUser] = useState(initialState);
 
     useEffect(() => {
-        const onChange = () => {
-            const width = Dimensions.get("window").width;
-
-            setDimensions(width);
-        }
+      const onChange = () => {
+        const width = Dimensions.get("window").width;
+        setDimensions(width);
+      };
 
         Dimensions.addEventListener("change", onChange);
     }, []);
+  
 
-    const Keyboard = () => {
+    const KeyboardHide = () => {
         setIsOnFocus(false);
         Keyboard.dismiss();
     };
@@ -50,12 +48,13 @@ export default function Registration({navigation}) {
     }
 
     return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <TouchableWithoutFeedback onPress={KeyboardHide}>
         <View style={styles.container}>
-          <img>
-            <KeyboardAvoidingView
-              behavior={Platform.OS == "ios" ? "padding" : "height"}
-            >
+          <ImageBackground
+            source={require("../../assets/PhotoBG.jpg")}
+            style={styles.img}
+          >
+            <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
               <View
                 style={{
                   ...styles.from,
@@ -63,50 +62,56 @@ export default function Registration({navigation}) {
                   width: dimensions,
                 }}
               >
-                <h2>Зарегистрироваться</h2>
+                <View style={styles.image}></View>
+                <Text style={{ ...styles.title }}>Зарегистрироваться</Text>
                 <TextInput
                   value={nameUser.login}
-                  onChangeText={(value) =>
-                    setNameUser((prev) => ({ ...prev, login: value }))
-                  }
                   placeholder="Логин"
                   onFocus={() => setIsOnFocus(true)}
                   style={styles.input}
+                  onChangeText={(value) =>
+                    setNameUser((prev) => ({ ...prev, login: value }))
+                  }
                 />
                 <TextInput
                   value={nameUser.email}
-                  onChangeText={(value) =>
-                    setNameUser((prev) => ({ ...prev, email: value }))
-                  }
                   placeholder="Электронный адрес"
                   onFocus={() => setIsOnFocus(true)}
                   style={styles.input}
-                />
-                <TextInput
-                  value={nameUser.password}
                   onChangeText={(value) =>
-                    setNameUser((prev) => ({ ...prev, password: value }))
+                    setNameUser((prev) => ({ ...prev, email: value }))
                   }
-                  placeholder="Пароль"
-                  secureTextEntry={isHidePasw}
-                  onFocus={() => setIsOnFocus(true)}
-                  style={styles.input}
                 />
-                <TouchableOpasity onPress={ToggleSecure}>
-                  {isHidePasw ? (
-                    <Feather name="eye" size={24} color="#c0c0c0" />
-                  ) : (
-                    <Feather name="eye-off" size={24} color="#c0c0c0" />
-                  )}
-                </TouchableOpasity>
+                <View>
+                  <TextInput
+                    value={nameUser.password}
+                    placeholder="Пароль"
+                    secureTextEntry={isHidePasw}
+                    onFocus={() => setIsOnFocus(true)}
+                    style={styles.input}
+                    onChangeText={(value) =>
+                      setNameUser((prev) => ({ ...prev, password: value }))
+                    }
+                  />
+                  <TouchableOpacity
+                    onPress={ToggleSecure}
+                    style={styles.showPassword}
+                  >
+                    {isHidePasw ? (
+                      <Feather name="eye" size={24} color="#c0c0c0" />
+                    ) : (
+                      <Feather name="eye-off" size={24} color="#c0c0c0" />
+                    )}
+                  </TouchableOpacity>
+                </View>
                 {!isOnFocus && (
-                  <TouchableOpasity
-                    activeOpasity={0.8}
+                  <TouchableOpacity
+                    activeOpacity={0.8}
                     style={styles.button}
                     onPress={onSubmit}
                   >
-                    Зарегистрироваться
-                  </TouchableOpasity>
+                    <Text style={styles.btnTitle}>Зарегистрироваться</Text>
+                  </TouchableOpacity>
                 )}
                 {!isOnFocus && (
                   <Text
@@ -114,34 +119,89 @@ export default function Registration({navigation}) {
                     onPress={() => navigation.navigate("Login")}
                   >
                     Уже есть аккаунт?
-                    <Text>Войти</Text>
+                    <Text style={styles.link}>Войти</Text>
                   </Text>
                 )}
               </View>
             </KeyboardAvoidingView>
-          </img>
+          </ImageBackground>
         </View>
       </TouchableWithoutFeedback>
     );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#ecf0f1",
+    backgroundColor: "#fff",
   },
   img: {
     flex: 1,
     resizeMode: "cover",
     alignItems: "center",
   },
+  from: {
+    position: "relative",
+    backgroundColor: "#fff",
+    marginTop: "auto",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 16,
+    borderTopRightRadius: 25,
+    borderTopLeftRadius: 25,
+  },
+  image: {
+    top: -50,
+    left: 125,
+    position: "absolute",
+    width: 120,
+    height: 120,
+    backgroundColor: "#F6F6F6",
+    borderRadius: 16,
+  },
   input: {
-    width: 200,
-    height: 44,
-    padding: 10,
+    position: "relative",
+    width: 343,
+    height: 50,
+    paddingLeft: 16,
+    backgroundColor: "#F6F6F6",
+    borderRadius: 8,
     borderWidth: 1,
-    borderColor: "black",
-    marginBottom: 10,
+    borderColor: "#E8E8E8",
+    fontFamily: "QR",
+  },
+  title: {
+    color: "#000",
+    fontSize: 30,
+    marginBottom: 32,
+    marginTop: 92,
+    fontFamily: "QR",
+  },
+  showPassword: {
+    position: "absolute",
+    top: 15,
+    left: 290,
+  },
+  button: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 343,
+    height: 50,
+    marginTop: 43,
+    marginBottom: 16,
+    borderRadius: 100,
+    backgroundColor: "#FF6C00",
+  },
+  btnTitle: {
+    color: "#fff",
+    fontFamily: "QR",
+  },
+  linkReg: {
+    fontFamily: "QR",
+    color: "#1B4371",
+  },
+  link: {
+    color: "#0E7DFD",
   },
 });
