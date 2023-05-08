@@ -52,7 +52,10 @@ export default function Login({ navigation }) {
     return (
       <TouchableWithoutFeedback onPress={KeyboardHide}>
         <View style={styles.container}>
-          <ImageBackground>
+          <ImageBackground
+            source={require("../../assets/PhotoBG.jpg")}
+            style={styles.img}
+          >
             <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
               <View
                 style={{
