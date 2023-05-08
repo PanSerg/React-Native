@@ -22,7 +22,7 @@ export default function Registration({navigation}) {
       dimensions.get("window").width
     );
     const [isOnFocus, setIsOnFocus] = useState(false);
-    const [isHidenPasw, setIsHidenPasw] = useState(true);
+    const [isHidePasw, setIsHidePasw] = useState(true);
     const [nameUser, setNameUser] = useState(initialState);
 
     useEffect(() => {
@@ -46,13 +46,13 @@ export default function Registration({navigation}) {
     };
   
     const ToggleSecure = () => {
-      setIsHidenPasw((prev) => !prev);
+      setIsHidePasw((prev) => !prev);
     }
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
-          <img source={require()} style={styles.img}>
+          <img>
             <KeyboardAvoidingView
               behavior={Platform.OS == "ios" ? "padding" : "height"}
             >
@@ -88,12 +88,12 @@ export default function Registration({navigation}) {
                     setNameUser((prev) => ({ ...prev, password: value }))
                   }
                   placeholder="Пароль"
-                  secureTextEntry={isHidenPasw}
+                  secureTextEntry={isHidePasw}
                   onFocus={() => setIsOnFocus(true)}
                   style={styles.input}
                 />
                 <TouchableOpasity onPress={ToggleSecure}>
-                  {isHidenPasw ? (
+                  {isHidePasw ? (
                     <Feather name="eye" size={24} color="#c0c0c0" />
                   ) : (
                     <Feather name="eye-off" size={24} color="#c0c0c0" />

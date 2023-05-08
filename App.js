@@ -1,26 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 import Registration from './Screens/RegistrationScreen/RegistrationScreen';
+import { useFonts } from 'expo-font';
+import { NavigationContainer } from "@react-navigation/native";
+
 
 export default function App() {
+  const routing = useRoute(true);
+
+  const [fontsLoaded] = useFonts();
 
   return (
-    <View style={styles.container}>
-      <Routes>
-        <Route path="registration" element={<Registration />} />
-
-        <Text>Open App to start on your app!</Text>
-        <StatusBar style="auto" />
-      </Routes>
+    <View>
+      <NavigationContainer>{routing}</NavigationContainer>;
     </View>
-  );
+  ); 
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
