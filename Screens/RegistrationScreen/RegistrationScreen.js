@@ -47,7 +47,7 @@ export default function Registration({navigation}) {
       setIsHidePasw((prev) => !prev);
     }
 
-    return (
+  return (
       <TouchableWithoutFeedback onPress={KeyboardHide}>
         <View style={styles.container}>
           <ImageBackground

@@ -19,7 +19,7 @@ const initialState = {
   password: "",
 };
 
-export default function Login({ navigation }) {
+export default function LoginScreen({ navigation }) {
     const [user, setUser] = useState(initialState);
     const [isHidePasw, setIsHidePasw] = useState(true);
     const [isOnFocus, setIsOnFocus] = useState(false);
