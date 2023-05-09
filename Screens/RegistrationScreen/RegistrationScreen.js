@@ -16,7 +16,7 @@ const initialState = {
     password: "",
 };
 
-export default function Registration({navigation}) {
+export default function RegistrationScreen({navigation}) {
     const [dimensions, setDimensions] = useState(
       Dimensions.get("window").width);
     const [isOnFocus, setIsOnFocus] = useState(false);
@@ -51,7 +51,7 @@ export default function Registration({navigation}) {
       <TouchableWithoutFeedback onPress={KeyboardHide}>
         <View style={styles.container}>
           <ImageBackground
-            source={require("../../assets/PhotoBG.jpg")}
+            source={require("../../assets/Photo BG.png")}
             style={styles.img}
           >
             <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>

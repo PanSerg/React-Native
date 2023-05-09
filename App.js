@@ -1,14 +1,14 @@
 import { View } from 'react-native';
 import { useFonts } from 'expo-font';
 import { NavigationContainer } from "@react-navigation/native";
-import LoginScreen from './Screens/LoginScreen/LoginScreen';
+// import LoginScreen from './Screens/LoginScreen/LoginScreen';
 
 export default function App() {
-  // conct[isReady, setIsReady] = useState(false);
-  const routing = useRoute(false);
+  // const [isReady, setIsReady] = useState(false);
+  const routing = useRoute(true);
 
   const [fontsLoaded] = useFonts();
-  console.log('hello');
+
   return (
     <View>
       <NavigationContainer>{routing}</NavigationContainer>;

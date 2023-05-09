@@ -53,7 +53,7 @@ export default function LoginScreen({ navigation }) {
       <TouchableWithoutFeedback onPress={KeyboardHide}>
         <View style={styles.container}>
           <ImageBackground
-            source={require("../../assets/PhotoBG.jpg")}
+            source={require("../../assets/Photo BG.png")}
             style={styles.img}
           >
             <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
