@@ -6,16 +6,23 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "ios": {
+        "jsEngine": "jsc",
+        "supportsTablet": true
+      },
+    "android:": {
+        "jsEngine": "jsc",
+        "supportsTablet": true
+      },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "jsEngine": "hermes"
     },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
+      ]
     },
     "android": {
       "adaptiveIcon": {
@@ -27,4 +34,3 @@
       "favicon": "./assets/favicon.png"
     }
   }
-}

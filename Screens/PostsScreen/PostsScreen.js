@@ -2,7 +2,7 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 
 const PostsScreen = () => {
     return (
-      <View style={styles.conteiner}>
+      <View style={styles.container}>
         <View style={styles.profile}>
           <Image style={styles.profileImage} />
           <View style={styles.profileDescription}>
@@ -16,7 +16,7 @@ const PostsScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  conteiner: {
+  container: {
     marginTop: 32,
     marginHorizontal: 16,
   },

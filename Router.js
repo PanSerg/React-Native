@@ -9,6 +9,8 @@ import PostsScreen from "./Screens/PostsScreen/PostsScreen";
 import ProfileScreen from "./Screens/ProfileScreen/ProfileScreen";
 import CreatePostsScreen from "./Screens/CreatePostsScreen/CreatePostsScreen";
 
+import { Octicons } from "@expo/vector-icons";
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 

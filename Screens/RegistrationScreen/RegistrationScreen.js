@@ -48,86 +48,89 @@ export default function RegistrationScreen({navigation}) {
     }
 
   return (
-      <TouchableWithoutFeedback onPress={KeyboardHide}>
-        <View style={styles.container}>
-          <ImageBackground
-            source={require("../../assets/Photo BG.png")}
-            style={styles.img}
+    <TouchableWithoutFeedback onPress={KeyboardHide}>
+      <View style={styles.container}>
+        <ImageBackground
+          source={require("../../assets/Photo BG.png")}
+          style={styles.img}
+        >
+          <KeyboardAvoidingView
+            style={{ flex: 1 }}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
-            <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
-              <View
-                style={{
-                  ...styles.from,
-                  paddingBottom: isOnFocus ? 32 : 100,
-                  width: dimensions,
-                }}
-              >
-                <View style={styles.image}></View>
-                <Text style={{ ...styles.title }}>Зарегистрироваться</Text>
+            <View
+              style={{
+                ...styles.from,
+                paddingBottom: isOnFocus ? 32 : 100,
+                width: dimensions,
+              }}
+            >
+              <View style={styles.image}></View>
+              <Text style={{ ...styles.title }}>Зарегистрироваться</Text>
+              <TextInput
+                value={nameUser.login}
+                placeholder="Логин"
+                onFocus={() => setIsOnFocus(true)}
+                style={styles.input}
+                onChangeText={(value) =>
+                  setNameUser((prev) => ({ ...prev, login: value }))
+                }
+              />
+              <TextInput
+                value={nameUser.email}
+                placeholder="Электронный адрес"
+                onFocus={() => setIsOnFocus(true)}
+                style={styles.input}
+                onChangeText={(value) =>
+                  setNameUser((prev) => ({ ...prev, email: value }))
+                }
+              />
+              <View>
                 <TextInput
-                  value={nameUser.login}
-                  placeholder="Логин"
+                  value={nameUser.password}
+                  placeholder="Пароль"
+                  secureTextEntry={isHidePasw}
                   onFocus={() => setIsOnFocus(true)}
                   style={styles.input}
                   onChangeText={(value) =>
-                    setNameUser((prev) => ({ ...prev, login: value }))
+                    setNameUser((prev) => ({ ...prev, password: value }))
                   }
                 />
-                <TextInput
-                  value={nameUser.email}
-                  placeholder="Электронный адрес"
-                  onFocus={() => setIsOnFocus(true)}
-                  style={styles.input}
-                  onChangeText={(value) =>
-                    setNameUser((prev) => ({ ...prev, email: value }))
-                  }
-                />
-                <View>
-                  <TextInput
-                    value={nameUser.password}
-                    placeholder="Пароль"
-                    secureTextEntry={isHidePasw}
-                    onFocus={() => setIsOnFocus(true)}
-                    style={styles.input}
-                    onChangeText={(value) =>
-                      setNameUser((prev) => ({ ...prev, password: value }))
-                    }
-                  />
-                  <TouchableOpacity
-                    onPress={ToggleSecure}
-                    style={styles.showPassword}
-                  >
-                    {isHidePasw ? (
-                      <Feather name="eye" size={24} color="#c0c0c0" />
-                    ) : (
-                      <Feather name="eye-off" size={24} color="#c0c0c0" />
-                    )}
-                  </TouchableOpacity>
-                </View>
-                {!isOnFocus && (
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    style={styles.button}
-                    onPress={onSubmit}
-                  >
-                    <Text style={styles.btnTitle}>Зарегистрироваться</Text>
-                  </TouchableOpacity>
-                )}
-                {!isOnFocus && (
-                  <Text
-                    style={styles.linkReg}
-                    onPress={() => navigation.navigate("Login")}
-                  >
-                    Уже есть аккаунт?
-                    <Text style={styles.link}>Войти</Text>
-                  </Text>
-                )}
+                <TouchableOpacity
+                  onPress={ToggleSecure}
+                  style={styles.showPassword}
+                >
+                  {isHidePasw ? (
+                    <Feather name="eye" size={24} color="#c0c0c0" />
+                  ) : (
+                    <Feather name="eye-off" size={24} color="#c0c0c0" />
+                  )}
+                </TouchableOpacity>
               </View>
-            </KeyboardAvoidingView>
-          </ImageBackground>
-        </View>
-      </TouchableWithoutFeedback>
-    );
+              {!isOnFocus && (
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  style={styles.button}
+                  onPress={onSubmit}
+                >
+                  <Text style={styles.btnTitle}>Зарегистрироваться</Text>
+                </TouchableOpacity>
+              )}
+              {!isOnFocus && (
+                <Text
+                  style={styles.linkReg}
+                  onPress={() => navigation.navigate("Login")}
+                >
+                  Уже есть аккаунт?
+                  <Text style={styles.link}>Войти</Text>
+                </Text>
+              )}
+            </View>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
+  );
 };
 
 const styles = StyleSheet.create({

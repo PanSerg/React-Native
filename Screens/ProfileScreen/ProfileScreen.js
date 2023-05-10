@@ -1,4 +1,5 @@
 import { View, Text, ImageBackground, StyleSheet } from "react-native";
+import { LogOutBtn } from "../../components/logOutBtn";
 
 const ProfileScreen = () => {
     return (

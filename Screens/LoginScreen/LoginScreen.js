@@ -12,7 +12,6 @@ import {
 } from "react-native";
 
 import { useEffect, useState } from "react";
-import { Dimensions, View } from "react-native";
 
 const initialState = {
   email: "",
@@ -56,7 +55,10 @@ export default function LoginScreen({ navigation }) {
             source={require("../../assets/Photo BG.png")}
             style={styles.img}
           >
-            <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+            <KeyboardAvoidingView
+              style={{ flex: 1 }}
+              behavior={Platform.OS === "ios" ? "padding" : "height"}
+            >
               <View
                 style={{
                   ...styles.form,
