@@ -1,6 +1,10 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+//---icons import
+import { Octicons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
 //---Screens
 import RegistrationScreen from "./Screens/RegistrationScreen/RegistrationScreen";
@@ -8,8 +12,7 @@ import LoginScreen from "./Screens/LoginScreen/LoginScreen";
 import PostsScreen from "./Screens/PostsScreen/PostsScreen";
 import ProfileScreen from "./Screens/ProfileScreen/ProfileScreen";
 import CreatePostsScreen from "./Screens/CreatePostsScreen/CreatePostsScreen";
-
-import { Octicons } from "@expo/vector-icons";
+import { LogOutBtn } from "./components/logOutBtn";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -66,7 +69,7 @@ export const useRoute = (isAuth) => {
           headerTitle: "Профиль",
           tabBarShowLabel: false,
           tabBarIcon: ({ focused, size, color }) => {
-            return <Ionicons name="person" size={24} color="black" />;
+            return <Ionicons name="person" size={25} color={color} />;
           },
         }}
         name="ProfileScreen"

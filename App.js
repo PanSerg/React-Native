@@ -1,32 +1,31 @@
 import { View } from 'react-native';
 import { useFonts } from 'expo-font';
+import * as SplashScreen from "expo-splash-screen";
 import { NavigationContainer } from "@react-navigation/native";
-// import LoginScreen from './Screens/LoginScreen/LoginScreen';
 import { useRoute } from './Router';
+import { useCallback } from 'react';
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const routing = useRoute(true);
-  const [fontsLoaded] = useFonts();
+  const [fontsLoaded] = useFonts({
+    "Inter-Black": require("./assets/fonts/Quicksand-Regular.ttf"),
+  });
+
+    const onLayoutRootView = useCallback(async () => {
+      if (fontsLoaded) {
+        await SplashScreen.hideAsync();
+      }
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) {
+      return null;
+    }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <NavigationContainer>{routing}</NavigationContainer>;
     </View>
   ); 
 };
-
-
-//   return (
-//     <View style={styles.container}>
-//       {/* <RegistrationScreen /> */}
-//       <LoginScreen />
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   },
-// });
