@@ -51,7 +51,7 @@ export default function RegistrationScreen({navigation}) {
     <TouchableWithoutFeedback onPress={KeyboardHide}>
       <View style={styles.container}>
         <ImageBackground
-          source={require("../../assets/Photo BG.png")}
+          source={require("../../assets/PhotoBG.png")}
           style={styles.img}
         >
           <KeyboardAvoidingView
