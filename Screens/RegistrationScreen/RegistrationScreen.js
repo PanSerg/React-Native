@@ -7,13 +7,15 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
   KeyboardAvoidingView,
+  Image
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 const initialState = {
     login: "",
     email: "",
-    password: "",
+  password: "",
+    avatar: require('../../assets/avatar.png'),
 };
 
 export default function RegistrationScreen({navigation}) {
@@ -21,7 +23,10 @@ export default function RegistrationScreen({navigation}) {
       Dimensions.get("window").width);
     const [isOnFocus, setIsOnFocus] = useState(false);
     const [isHidePasw, setIsHidePasw] = useState(true);
-    const [nameUser, setNameUser] = useState(initialState);
+  const [nameUser, setNameUser] = useState(initialState);
+  
+  const [isAvatar, setIsAvatar] = useState(false);
+
 
     useEffect(() => {
       const onChange = () => {
@@ -41,7 +46,7 @@ export default function RegistrationScreen({navigation}) {
     const onSubmit = () => {
       console.log(nameUser);
       setNameUser(initialState);
-    };
+  };
   
     const ToggleSecure = () => {
       setIsHidePasw((prev) => !prev);
@@ -65,7 +70,25 @@ export default function RegistrationScreen({navigation}) {
                 width: dimensions,
               }}
             >
-              <View style={styles.image}></View>
+              <View style={styles.imageAvatar}>
+                <Image
+                  style={styles.avatar}
+                  source={isAvatar ? nameUser.avatar : null}
+                />
+                {isAvatar ? (
+                  <AntDesign
+                    name="closecircleo"
+                    style={styles.avatarClose}
+                    onPress={() => setIsAvatar(false)}
+                  />
+                ) : (
+                  <AntDesign
+                    name="pluscircleo"
+                    style={styles.avatarAdd}
+                    onPress={() => setIsAvatar(true)}
+                  />
+                )}
+              </View>
               <Text style={{ ...styles.title }}>Зарегистрироваться</Text>
               <TextInput
                 value={nameUser.login}
@@ -154,7 +177,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
   },
-  image: {
+  imageAvatar: {
     top: -50,
     left: 125,
     position: "absolute",
@@ -206,5 +229,25 @@ const styles = StyleSheet.create({
   },
   link: {
     color: "#0E7DFD",
+  },
+  avatar: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#f6f6f6",
+    borderRadius: 16,
+  },
+  avatarAdd: {
+    position: "absolute",
+    right: -12,
+    bottom: 14,
+    color: "#ff6c00",
+    fontSize: 25,
+  },
+  avatarClose: {
+    position: "absolute",
+    right: -12,
+    bottom: 14,
+    color: "#e8e8e8",
+    fontSize: 25,
   },
 });

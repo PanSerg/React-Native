@@ -10,8 +10,9 @@ import {
   ImageBackground,
   KeyboardAvoidingView,
 } from "react-native";
-
 import { useEffect, useState } from "react";
+
+import { Feather } from "@expo/vector-icons";
 
 const initialState = {
   email: "",

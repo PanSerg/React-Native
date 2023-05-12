@@ -13,7 +13,7 @@ const ProfileScreen = () => {
               <LogOutBtn />
             </View>
             <View style={styles.image}></View>
-            <Text style={styles.title}>Name</Text>
+            <Text style={styles.title}>Natali Romanova</Text>
           </View>
         </ImageBackground>
       </View>
